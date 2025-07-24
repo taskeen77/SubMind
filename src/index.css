@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+
+:root {
+  --primary-color: #1E40AF;
+  --secondary-color: #FFFFFF;
+  --accent-color: #3B82F6;
+  --background-color: #FFFFFF;
+  --text-color: #1E40AF;
+  --primary-hover-color: #2563EB;
+  --secondary-hover-color: #F7F7F7;
+  --primary-active-color: #1A365D;
+}
+
+
+
+@keyframes slide {
+  from {
+    transform: translateX(120%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+
+.animate-slide {
+  animation: slide 3s ease forwards;
+}

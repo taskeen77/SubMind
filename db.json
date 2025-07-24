@@ -1,0 +1,73 @@
+{
+  "subscriptions": [
+    {
+      "id": "c196",
+      "name": "Spotify",
+      "price": "100",
+      "frequency": "monthly",
+      "category": "entertainment",
+      "startDate": "2025-07-05"
+    },
+    {
+      "id": "196d",
+      "name": "Tableau",
+      "price": "796",
+      "frequency": "monthly",
+      "category": "entertainment",
+      "startDate": "2025-07-01"
+    },
+    {
+      "id": "fa8f",
+      "name": "Cursor",
+      "price": "48890",
+      "frequency": "yearly",
+      "category": "education",
+      "startDate": "2025-02-08"
+    },
+    {
+      "id": "4be0",
+      "name": "Youtube Premium",
+      "price": "500",
+      "frequency": "monthly",
+      "category": "utilities",
+      "startDate": "2025-07-11"
+    },
+    {
+      "id": "9c71",
+      "name": "Amazon Prime",
+      "price": "499",
+      "frequency": "monthly",
+      "category": "entertainment",
+      "startDate": "2025-07-05"
+    },
+    {
+      "id": "05f8",
+      "name": "Asana",
+      "price": "678",
+      "frequency": "monthly",
+      "category": "education",
+      "startDate": "2025-07-01"
+    },
+    {
+      "id": "df13",
+      "name": "Microsoft 365",
+      "price": "78900",
+      "frequency": "yearly",
+      "category": "productivity",
+      "startDate": "2025-03-06"
+    },
+    {
+      "id": "d23c",
+      "name": "Adobe Creative Cloud",
+      "price": "1200",
+      "frequency": "monthly",
+      "category": "utilities",
+      "startDate": "2025-07-12"
+    }
+  ],
+  "nodes": [],
+  "settings": {
+    "budgetAlertEnabled": true,
+    "budgetThreshold": 4000
+  }
+}

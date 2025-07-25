@@ -1,4 +1,3 @@
-
 import { useMemo, useEffect, useState } from "react";
 import { useSubscriptionContext } from "../../context/SubscriptionContext";
 import {
@@ -14,13 +13,11 @@ import {
 } from "recharts";
 import { format } from "date-fns";
 
-// Color palette
 const COLORS = [
   "#34D399", "#3B82F6", "#FBBF24", "#F87171",
   "#A78BFA", "#10B981", "#F472B6"
 ];
 
-// Hook to track screen size
 const useIsSmallScreen = () => {
   const [isSmall, setIsSmall] = useState(window.innerWidth < 640);
   useEffect(() => {
@@ -31,7 +28,6 @@ const useIsSmallScreen = () => {
   return isSmall;
 };
 
-// Vertical color legend
 const CategoryLegend = ({ data }) => (
   <div className="flex flex-col gap-2 text-sm ml-0 sm:ml-4 mt-4 sm:mt-0">
     {data.map((entry, idx) => (
@@ -46,7 +42,6 @@ const CategoryLegend = ({ data }) => (
   </div>
 );
 
-// KPI Card component
 const KPI = ({ title, value }) => (
   <div className="bg-white rounded-2xl shadow p-4 flex flex-col">
     <span className="text-sm text-gray-500">{title}</span>
@@ -60,7 +55,6 @@ const Dashboard = () => {
   const now = new Date();
   const currentYear = now.getFullYear();
 
-  // Get price of subscription
   const getPrice = (sub) => {
     if (sub.price) return parseFloat(sub.price);
     if (Array.isArray(sub.details)) {
@@ -75,6 +69,30 @@ const Dashboard = () => {
   );
 
   const monthlyAverage = (totalSpend / 12).toFixed(2);
+
+  const activeSubscriptions = useMemo(() => {
+    const today = new Date();
+
+    return subscriptions.filter((sub) => {
+      const startDate = new Date(sub.startDate);
+
+      if (startDate > today) return false;
+
+      if (sub.frequency === "monthly") {
+        const endDate = new Date(startDate);
+        endDate.setMonth(endDate.getMonth() + 1);
+        return today < endDate;
+      }
+
+      if (sub.frequency === "yearly") {
+        const endDate = new Date(startDate);
+        endDate.setFullYear(endDate.getFullYear() + 1);
+        return today < endDate;
+      }
+
+      return false;
+    });
+  }, [subscriptions]);
 
   const breakdownByFrequency = useMemo(() => {
     const monthly = {};
@@ -127,8 +145,9 @@ const Dashboard = () => {
         {/* KPI Section */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <KPI title="Total Spend" value={`$${totalSpend}`} />
-          <KPI title="Active Subscriptions" value={subscriptions.length} />
-          <KPI title="Monthly Avg" value={`$${monthlyAverage}`} />
+          <KPI title="Total Subscriptions" value={subscriptions.length} />
+          <KPI title="Active Subscriptions" value={activeSubscriptions.length} />
+          {/* <KPI title="Monthly Avg" value={`$${monthlyAverage}`} /> */}
           <KPI
             title="Categories"
             value={new Set(subscriptions.map((s) => s.category)).size}

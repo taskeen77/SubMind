@@ -467,7 +467,7 @@ const SubscriptionManager = () => {
   const showNotification = (type, message) => {
     setNotification({ type, message });
 
-    setTimeout(() => setNotification(null), 7000); // auto-dismiss
+    setTimeout(() => setNotification(null), 3000); 
   };
 
   useEffect(() => {

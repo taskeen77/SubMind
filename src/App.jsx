@@ -62,7 +62,8 @@ function App() {
           <Sidebar />
           <div className="flex-1 ml-16 md:ml-64 p-4 transition-all">
             <Routes>
-              <Route path="/" element={<Dashboard />} />
+              {/* <Route path="/" element={<Dashboard />} /> */}
+              <Route index element={<Dashboard />} />
               <Route path="/analytics" element={<Analytics />} />
               <Route path="/reminders" element={<ReminderPanel />} />
               <Route path="/settings" element={<SettingsPage />} />

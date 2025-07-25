@@ -27,7 +27,7 @@
     {
       "id": "4be0",
       "name": "Youtube Premium",
-      "price": "500",
+      "price": "545",
       "frequency": "monthly",
       "category": "utilities",
       "startDate": "2025-07-11"
@@ -63,6 +63,22 @@
       "frequency": "monthly",
       "category": "utilities",
       "startDate": "2025-07-12"
+    },
+    {
+      "id": "b0d2",
+      "name": "Chatgpt 4.0",
+      "price": "670",
+      "frequency": "monthly",
+      "category": "utilities",
+      "startDate": "2025-07-16"
+    },
+    {
+      "id": "699f",
+      "name": "Jira",
+      "price": "900",
+      "frequency": "monthly",
+      "category": "utilities",
+      "startDate": "2025-06-12"
     }
   ],
   "nodes": [],

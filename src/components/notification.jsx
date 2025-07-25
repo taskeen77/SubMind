@@ -1,50 +1,3 @@
-// // Notification.jsx
-// import { useEffect } from "react";
-// import {
-//   CheckCircleIcon,
-//   ExclamationCircleIcon,
-//   InformationCircleIcon,
-//   ExclamationTriangleIcon,
-//   XMarkIcon,
-// } from "@heroicons/react/24/outline";
-
-// const Notification = ({ type = "success", message, onClose }) => {
-//   useEffect(() => {
-//     const timer = setTimeout(() => onClose(), 7000);
-//     return () => clearTimeout(timer);
-//   }, [onClose]);
-
-//   const baseStyle =
-//     "fixed top-6 right-6 z-[9999] px-5 py-4 rounded-lg shadow-xl flex items-start gap-3 text-white max-w-sm w-full transition-transform animate-slide";
-
-//   const types = {
-//     success: "bg-emerald-600",
-//     error: "bg-red-500",
-//     info: "bg-blue-500",
-//     warning: "bg-yellow-500 text-gray-900",
-//   };
-
-//   const icons = {
-//     success: <CheckCircleIcon className="h-6 w-6 text-white" />,
-//     error: <ExclamationCircleIcon className="h-6 w-6 text-white" />,
-//     info: <InformationCircleIcon className="h-6 w-6 text-white" />,
-//     warning: <ExclamationTriangleIcon className="h-6 w-6 text-gray-800" />,
-//   };
-
-//   return (
-//     <div className={`${baseStyle} ${types[type]}`}>
-//       <div className="mt-1">{icons[type]}</div>
-//       <div className="flex-1 text-sm font-medium">{message}</div>
-//       <button onClick={onClose} className="mt-0.5">
-//         <XMarkIcon className="h-5 w-5 text-white hover:text-gray-200" />
-//       </button>
-//     </div>
-//   );
-// };
-
-// export default Notification;
-// // 
-
 import { ShieldCheck, XCircle, Info, X } from "lucide-react";
 import { useEffect } from "react";
 
@@ -58,7 +11,7 @@ const Notification = ({ type = "info", message, onClose }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       onClose();
-    }, 7000); // Display for 7 seconds
+    }, 4000); 
 
     return () => clearTimeout(timer);
   }, [onClose]);

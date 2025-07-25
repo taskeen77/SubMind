@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Notification from "../../notification"; 
 
 const SubscriptionForm = ({ onSubmit, initialData, isEditing }) => {
   const [formData, setFormData] = useState({
@@ -10,6 +11,7 @@ const SubscriptionForm = ({ onSubmit, initialData, isEditing }) => {
   });
 
   const [error, setError] = useState("");
+  const [showNotification, setShowNotification] = useState(false);
 
   useEffect(() => {
     if (initialData) {
@@ -30,6 +32,15 @@ const SubscriptionForm = ({ onSubmit, initialData, isEditing }) => {
       return;
     }
 
+    const selectedDate = new Date(formData.startDate);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Remove time part
+
+    if (selectedDate > today) {
+      setShowNotification(true);
+      return;
+    }
+
     setError("");
     onSubmit(formData);
 
@@ -42,16 +53,18 @@ const SubscriptionForm = ({ onSubmit, initialData, isEditing }) => {
         startDate: "",
       });
     }
-
-    if (new Date(formData.startDate) > new Date()) {
-  setError("Start date cannot be in the future.");
-  return;
-}
-
   };
 
   return (
     <div className="w-full max-w-2xl mx-auto p-6 sm:p-8 rounded-xl shadow-md mt-10">
+      {showNotification && (
+        <Notification
+          type="error"
+          message="Start date cannot be in the future. Form not submitted."
+          onClose={() => setShowNotification(false)}
+        />
+      )}
+
       <h2 className="text-2xl font-bold mb-6 text-gray-800 text-center">
         {isEditing ? "Edit Subscription" : "Add Subscription"}
       </h2>
@@ -79,7 +92,7 @@ const SubscriptionForm = ({ onSubmit, initialData, isEditing }) => {
             name="name"
             value={formData.name}
             onChange={handleChange}
-            className="w-full border px-4 py-2 rounded-md focus:ring-2 focus:ring-emerald-700 focus:outline-none"
+            className="cursor-pointer w-full border px-4 py-2 rounded-md focus:ring-2 focus:ring-emerald-700 focus:outline-none"
             placeholder="e.g. Netflix"
             required
           />
@@ -93,7 +106,7 @@ const SubscriptionForm = ({ onSubmit, initialData, isEditing }) => {
             value={formData.price}
             onChange={handleChange}
             min="0"
-            className="w-full border px-4 py-2 rounded-md focus:ring-2 focus:ring-emerald-700 focus:outline-none"
+            className="cursor-pointer w-full border px-4 py-2 rounded-md focus:ring-2 focus:ring-emerald-700 focus:outline-none"
             placeholder="e.g. 499"
             required
           />
@@ -105,7 +118,7 @@ const SubscriptionForm = ({ onSubmit, initialData, isEditing }) => {
             name="frequency"
             value={formData.frequency}
             onChange={handleChange}
-            className="w-full border px-4 py-2 rounded-md focus:ring-2 focus:ring-emerald-700 focus:outline-none"
+            className="cursor-pointer w-full border px-4 py-2 rounded-md focus:ring-2 focus:ring-emerald-700 focus:outline-none"
             required
           >
             <option value="monthly">Monthly</option>
@@ -119,7 +132,7 @@ const SubscriptionForm = ({ onSubmit, initialData, isEditing }) => {
             name="category"
             value={formData.category}
             onChange={handleChange}
-            className="w-full border px-4 py-2 rounded-md focus:ring-2 focus:ring-emerald-700 focus:outline-none"
+            className="cursor-pointer w-full border px-4 py-2 rounded-md focus:ring-2 focus:ring-emerald-700 focus:outline-none"
             required
           >
             <option value="entertainment">Entertainment</option>
@@ -132,14 +145,17 @@ const SubscriptionForm = ({ onSubmit, initialData, isEditing }) => {
 
         <div>
           <label className="block mb-1 font-medium text-gray-700">Start Date *</label>
+
           <input
             type="date"
             name="startDate"
             value={formData.startDate}
             onChange={handleChange}
-            className="w-full border px-4 py-2 rounded-md focus:ring-2 focus:ring-emerald-700 focus:outline-none"
+            className="cursor-pointer w-full border px-4 py-2 rounded-md focus:ring-2 focus:ring-emerald-700 focus:outline-none"
             required
+            max={new Date().toISOString().split("T")[0]} // This disables future dates
           />
+
         </div>
 
         <button

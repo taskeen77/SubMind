@@ -108,18 +108,6 @@ const Description = () => {
       </section>
 
       {/* Logic & Context */}
-      {/* <section>
-      <h2 className="text-2xl font-semibold mb-4 flex items-center gap-2">
-        <Database className="text-indigo-600" /> Logic Flow & Context
-      </h2>
-      <ul className="list-disc list-inside space-y-2">
-        <li><strong>SubscriptionContext:</strong> Manages all subscriptions, stored in localStorage.</li>
-        <li><strong>ThemeContext:</strong> Handles dark/light mode using Tailwind.</li>
-        <li><strong>MindmapContext:</strong> Provides state for mindmap structure.</li>
-        <li>Charts auto-update using <code>useMemo()</code> and <code>useEffect()</code> when data changes.</li>
-      </ul>
-    </section> */}
-      {/* Logic & Context */}
       <section>
         <h2 className="text-2xl font-semibold mb-4 flex items-center gap-2">
           <Database className="text-indigo-600" /> Logic Flow & Context

@@ -28,11 +28,6 @@ const ReminderPanel = () => {
   const endDate = new Date(today);
   endDate.setDate(today.getDate() + range);
 
-//   const filtered = subscriptions.filter((sub) => {
-//     const nextRenewal = getNextRenewalDate(sub, today);
-//     return nextRenewal && isAfter(nextRenewal, today) && isBefore(nextRenewal, endDate);
-//   });
-
 const filtered = subscriptions.filter((sub) => {
   const start = parseISO(sub.startDate);
   if (isAfter(start, today)) return false;
@@ -113,12 +108,6 @@ const filtered = subscriptions.filter((sub) => {
                     ${sub.price}
                   </p>
                 </div>
-                {/* <button
-                  className="mt-2 sm:mt-0 px-3 py-1 text-sm bg-red-600 text-white rounded hover:bg-red-700"
-                  onClick={() => markAsCancelled(sub.id)}
-                >
-                  Mark as Cancelled
-                </button> */}
               </div>
               
             );
